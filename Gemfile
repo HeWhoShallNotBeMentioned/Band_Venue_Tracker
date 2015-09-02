@@ -8,3 +8,4 @@ gem("pg")
 gem("rspec")
 gem("capybara")
 gem("pry")
+gem 'shoulda-matchers'
