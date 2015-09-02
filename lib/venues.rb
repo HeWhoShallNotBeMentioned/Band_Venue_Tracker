@@ -4,9 +4,9 @@ Class Venues < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true, length { minimum: 2 }
   before_save(:capitalize_name)
 
-  private 
+  private
 
   define_method(:capitalize_name) do
-    self.name = (name().capitilize())
+    self.name = (name().capitalize())
   end
 end
