@@ -6,3 +6,12 @@
   <li> <a href="/bands/<%= band.id %>"><%= band.name %></a> </li>
 </ul>
 <% end %>
+
+
+
+<h3>Add a new band</h3>
+<form action="/bands/new" method="post">
+  <label for="band_name">Band Name:</label>
+  <input type="text" name="band_name" placeholder="example: The Sundays">
+  <button name="submit">Add Your Band</button>
+</form>
