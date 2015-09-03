@@ -9,6 +9,10 @@ get '/' do
   erb :index
 end
 
+
+###Bands###
+
+
 get '/bands' do
   @bands = Band.all()
   erb(:bands)
@@ -17,7 +21,7 @@ end
 get '/bands/:id' do
   id = params.fetch('id').to_i
   @band = Band.find(id)
-
+  @venues = Venue.all()
   erb(:band)
 end
 
@@ -44,6 +48,18 @@ delete '/bands/:id/delete' do
   erb(:bands)
 end
 
+post '/bands/:id/venues/new' do
+  band_id = params.fetch('id').to_i
+  venue_id  = params.fetch('venue_id').to_i
+  band = Band.find(band_id)
+  venue = Venue.find(venue_id)
+  band.venues.push(venue)
+  @bands = Band.all
+  erb(:bands)
+end
+
+###Venues###
+
 get '/venues' do
   @venues = Venue.all()
   erb(:venues)
@@ -52,7 +68,7 @@ end
 get '/venues/:id' do
   id = params.fetch('id').to_i
   @venue = Venue.find(id)
-
+  @bands = Band.all()
   erb(:venue)
 end
 
@@ -75,6 +91,17 @@ delete '/venues/:id/delete' do
   id = params.fetch('id').to_i
   venue = Venue.find(id)
   venue.destroy
+  @venues = Venue.all
+  erb(:venues)
+end
+
+post '/venues/:id/bands/new' do
+  venue_id = params.fetch('id').to_i
+  band_id  = params.fetch('band_id').to_i
+  band = Band.find(band_id)
+  venue = Venue.find(venue_id)
+  venue.bands.push(band)
+  @bands = Band.all
   @venues = Venue.all
   erb(:venues)
 end

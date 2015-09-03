@@ -1,1 +1,22 @@
 <h3>Welcome customers of <%= @venue.name %></h3>
+
+<% Band.all.any? %>
+<form id="add_band" action="/venues/<%= @venue.id %>/bands/new" method="post">
+  <label for="band_list">Select a Band</label>
+  <select id="band_id" name="band_id">
+    <% @bands.each do |band| %>
+    <option value='<%= band.id %>'><%= band.name %></option>
+    <% end %>
+  </select>
+  <button class='btn btn-success btn-sm' type='submit'>Submit</button>
+</form>
+
+<h4><%= @venue.name %> has hosted the following bands</h4>
+
+<% @venue.bands().each() do |band| %>
+
+<ul>
+  <li><%= band.name %></li>
+</ul>
+
+<% end %>
