@@ -3,7 +3,20 @@
 <% @venues.each do |venue| %>
 
   <ul>
-    <li> <a href="/venues/<%= venue.id %>"><%= venue.name %></a></li>
+    <li> <a href="/venues/<%= venue.id %>"><%= venue.name %></a>
+      <form action="/venues/<%= venue.id %>/delete" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" id="venue_id" name="venue_id" value="<%= venue.id %>">
+        <button class="btn btn-danger btn-sm" type="submit">Delete Venue</button>
+      </form>
+
+      <form action="/venues/<%= venue.id %>/update" method="post"></a>
+        <input type="hidden" name="_method" value="patch">
+        <input type="text" name="venue_name">
+        <button name="submit">Update Venue Name</button>
+      </form>
+
+    </li>
   </ul>
 <% end %>
 

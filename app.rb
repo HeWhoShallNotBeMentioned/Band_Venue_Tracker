@@ -62,3 +62,19 @@ post '/venues/new' do
   @venues = Venue.all
   erb(:venues)
 end
+
+patch '/venues/:id/update' do
+  id = params.fetch('id')
+  @venue = Venue.find(id)
+  name = params.fetch('venue_name', @venue.name)
+  @venue.update({name: name})
+  redirect("/venues/#{@venue.id}")
+end
+
+delete '/venues/:id/delete' do
+  id = params.fetch('id').to_i
+  venue = Venue.find(id)
+  venue.destroy
+  @venues = Venue.all
+  erb(:venues)
+end
